@@ -1,57 +1,48 @@
-/* Set backgorund color to blue */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700;900&display=swap');
-
 body {
-    color: black;
-    font-family: lato;
-    text-align: center;
-}	
-
-.container {
-    width: 100%;
-    height: 100%;
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    /* Center Content */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.player {
-    position: relative;
-    z-index: 2;
+.card {
+    background-color: #333;
+    color: #fff;
+    border-color: #fff;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.card-img-top {
     width: 100%;
-    height: 150px;
-    background-color: #fff;
-    border-radius: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .player-img {
-    /* position: absolute; */
-    left: 15px;
-    top: -25px;
-    border-radius: 10px;
-    width: 150px;
-    height: 150px;
+    height: 15vw;
     object-fit: cover;
-  }
+}
 
-    .card {
-        /* 50% Transparrent Backgroup */
-        background-color: rgba(0, 0, 0, 0.0);
-        border : 0px;
-        align-items: center;
-    }
+.card-title {
+    color: #fff;
+}
 
-    audio {
-        filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
-        width: 200px;
-        height: 25px;
-        
-    }
+.card-text {
+    color: #ccc;
+}
 
+.btn-warning {
+    color: #333;
+    background-color: #fff;
+    border-color: #fff;
+}
 
 .card-footer {
-    background-color: transparent;
+    background-color: #222;
+    color: #fff;
+}
+
+input#share-link {
+    width: 100%;
+    color: #333;
+    margin-top: 10px;
 }

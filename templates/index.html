@@ -1,55 +1,55 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container">
-    <div class="card" style="width: 20rem;">
-        <img class="card-img-top player-img" src="" id="station-image"
-            onerror="this.src='{{ url_for('static', filename='img/i-dunno.jpg') }}'" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title" id="station-name"></h5>
-            <p class="card-text" id="station-country"></p>
-        </div>
-        <audio controls autoplay id="player">
-            <source src="" type="audio/mpeg" id="audio-source">
-            Your browser does not support the audio element.
-        </audio>
-        <div class="card-footer text-muted">
-            <button type="button" class="btn btn-warning" id="random-station">
-                <b>Get another station</b>
-            </button>
-            <p>Share this station:</p>
-            <input type="text" id="share-link" readonly>
-        </div>
+  <div class="card" style="width: 20rem">
+    <img
+      class="card-img-top player-img"
+      src=""
+      id="station-image"
+      onerror="this.src='{{ url_for('static', filename='img/i-dunno.jpg') }}'"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title" id="station-name"></h5>
+      <p class="card-text" id="station-country"></p>
     </div>
+    <audio controls autoplay id="player">
+      <source src="" type="audio/mpeg" id="audio-source" />
+      Your browser does not support the audio element.
+    </audio>
+    <div class="card-footer text-muted">
+      <button type="button" class="btn btn-warning" id="random-station">
+        <b>Get another station</b>
+      </button>
+      <p>Share this station:</p>
+      <input type="text" id="share-link" readonly />
+    </div>
+  </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    function loadStation(data) {
-        $('#station-name').text(data.name);
-        $('#station-image').attr('src', data.favicon);
-        $('#station-country').text(data.country);
-        $('#audio-source').attr('src', data.url);
-        $('#player')[0].load();
-        $('#share-link').val(window.location.origin + '/play/' + data.stationuuid);
-    }
+  function loadStation(data) {
+    $("#station-name").text(data.name);
+    $("#station-image").attr("src", data.favicon);
+    $("#station-country").text(data.country);
+    $("#audio-source").attr("src", data.url);
+    $("#player")[0].load();
+    $("#share-link").val(window.location.origin + "/play/" + data.stationuuid);
+  }
 
-    function fetchRandomStation(stationuuid) {
-    var url = stationuuid ? '/play/' + stationuuid : '/random_station';
+  function fetchRandomStation(stationuuid) {
+    var url = stationuuid ? "/play/" + stationuuid : "/random_station";
     $.get(url, loadStation);
-}
+  }
 
-
-
-    $(document).ready(function() {
+  $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
-    var stationuuid = urlParams.get('stationuuid');
+    var stationuuid = urlParams.get("stationuuid");
 
-    $('#random-station').click(function() { fetchRandomStation(); });
+    $("#random-station").click(function () {
+      fetchRandomStation();
+    });
     fetchRandomStation(stationuuid);
-
-
-});
-
-
+  });
 </script>
 {% endblock %}
