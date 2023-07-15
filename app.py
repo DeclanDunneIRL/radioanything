@@ -73,6 +73,7 @@ def fetch_random_station():
 def fetch_station(stationuuid):
     station = get_station(stationuuid)
     if station is None:
+        # If the station is not popup an error and show the home page
         return jsonify({'error': 'Station not found'}), 404
     return jsonify(station), 200
 
