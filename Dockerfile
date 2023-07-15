@@ -1,17 +1,16 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim-buster
+FROM python:3.10-slim
 
-# Set the working directory in the container to /app
-WORKDIR /app
+ENV PYTHONUNBUFFERED True
 
-# Add the current directory contents into the container at /app
-ADD . /app
+ENV APP_HOME /
 
-# Install any needed packages specified in requirements.txt
+ENV PORT 5000
+
+WORKDIR $APP_HOME
+
+COPY . ./
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
-
-# Run app.py when the container launches
-CMD ["gunicorn", "-w", "4", "-b", ":5000", "app:app"]
+# Start the server with gunicorn running main.py
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
